@@ -1,13 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './App';
+import { BrowserRouter } from 'react-router-dom';
+
+import { Provider } from "react-redux";
+
+import {configStore} from './store/configStore';
+
+
 import reportWebVitals from './reportWebVitals';
 
+
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={configStore({})}>
+    <BrowserRouter basename='/My-Diary/'>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </BrowserRouter>
+  </Provider>
+  ,
   document.getElementById('root')
 );
 
