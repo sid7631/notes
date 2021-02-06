@@ -1,5 +1,6 @@
 $width: 100px;
 $height: 100px;
+$primary-color: #3f51b5;
 
 body{
   margin: 0;
@@ -17,20 +18,35 @@ body{
   margin: 20% auto;
 }
 
+.loading-body{
+  position: relative;
+}
+
+.loading-icon-container {
+  display: flex;
+  justify-content: center;
+
+  .loading-icon{
+    width: 80px;
+    height: auto;
+  }
+}
+
 
 .loading-line{
   height: 3px;
   width: 100%;
   background: #e8e8e8;
-  margin-top: 30%;
+  margin-top: 1%;
   
   .inner{
     width: 100%;
     height: inherit;
-    background: #0077B5;
+    background:$primary-color;
     animation: slide 2s ease-in-out infinite;
   }
 }
+
 
 @keyframes slide{
   0%{

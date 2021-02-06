@@ -13,12 +13,11 @@ import {configStore} from './store/configStore';
 import reportWebVitals from './reportWebVitals';
 
 
-
 ReactDOM.render(
   <Provider store={configStore({})}>
     <BrowserRouter basename='/My-Diary/'>
       <React.StrictMode>
-        <App />
+          <App/>
       </React.StrictMode>
     </BrowserRouter>
   </Provider>
