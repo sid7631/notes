@@ -15,7 +15,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <Provider store={configStore({})}>
-    <BrowserRouter basename='/My-Diary/'>
+    <BrowserRouter basename='/React-Firebase-Auth/'>
       <React.StrictMode>
           <App/>
       </React.StrictMode>

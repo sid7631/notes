@@ -20,7 +20,7 @@ const HomePage = (props) => {
 
                             <div className="d-flex justify-content-between">
                                 <div>
-                                    <h4>Diary</h4>
+                                    <h4>Project Name</h4>
                                 </div>
                                 <div>
                                     <Button onClick={() => history.push('/sign-up')}>Sign Up</Button>
