@@ -8,11 +8,14 @@ import { Link } from 'react-router-dom';
 
 function SignIn(props) {
 
+    const initialHelperText = {email:"We'll never share your email",password:'Enter password of length 8.'};
+
     const [email, setemail] = useState(null)
     const [password, setpassword] = useState(null)
+    const [helperText, sethelperText] = useState(initialHelperText)
 
-    async function handleSubmit(event) {
-        event.preventDefault()
+    async function handleSubmit(e) {
+        e.preventDefault()
         try{
             await props.userSignIn(email, password)
         } catch (error) {
@@ -30,40 +33,31 @@ function SignIn(props) {
                 <Paper>
                     <CardContent>
                         <h2 className="text-center mb-4">Sign In</h2>
+                        <form onSubmit={handleSubmit}>
                         <FormGroup>
-                            <FormControl>
+                            <FormControl className="my-2">
                                 <InputLabel htmlFor="my-input">Email address</InputLabel>
                                 <Input 
                                     id="my-input" 
-                                    aria-describedby="my-helper-text"  
+                                    type="email"
+                                    aria-describedby="my-input-text"  
                                     onChange={e => setemail(e.target.value)}
                                     required />
-                                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
+                                <FormHelperText id="my-input-text">{helperText['email']}</FormHelperText>
                             </FormControl>
                             <FormControl>
                                 <InputLabel htmlFor="my-input">Password</InputLabel>
                                 <Input 
                                     type="password" 
-                                    id="my-input" 
-                                    aria-describedby="my-helper-text" 
+                                    id="my-password" 
+                                    aria-describedby="my-password-text" 
                                     onChange={e => setpassword(e.target.value)}
                                     required />
-                                <FormHelperText id="my-helper-text">Enter password of length 8.</FormHelperText>
+                                <FormHelperText id="my-password-text">{helperText['password']}</FormHelperText>
                             </FormControl>
-                            {/* <Form.Group id="email">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" ref={emailRef} required></Form.Control>
-                            </Form.Group> */}
-                            {/* <Form.Group id="password">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" ref={passwordRef} required></Form.Control>
-                            </Form.Group> */}
-                            {/* <Form.Group id="password-confirm">
-                                <Form.Label>Password Confirmation</Form.Label>
-                                <Form.Control type="password" ref={passwordConfirmRef} required></Form.Control>
-                            </Form.Group> */}
-                            <Button variant="contained" color="primary" className="w-100 mt-2" type="submit" onClick={handleSubmit}>Sign In</Button>
+                            <Button variant="contained" color="primary" className="w-100 mt-2" type="submit" >Sign In</Button>
                         </FormGroup>
+                        </form>
                     </CardContent>
                 </Paper>
                 <div className="w-100 text-center mt-2">

@@ -1,0 +1,128 @@
+.content {
+    position: relative;
+}
+
+#sidebar.active~.content {
+    left: var(--sidebar-active-width);
+    transition: left var(--slide-time) ease;
+}
+
+#sidebar~.content {
+    left: var(--sidebar-width);
+    transform: left var(--slide-time) ease;
+}
+
+/* ---- notelist container----*/
+
+
+.note-list-container {
+    position: fixed;
+    width: var(--note-list-width);
+    height: 100%;
+    border-right: 1px solid var(--divider-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    .note-list-header {
+        // padding: 1rem;
+        width: 100%;
+        padding: 1rem;
+        border-bottom: 1px solid var(--divider-color);
+    }
+
+    .note-list-body {
+        width: 100%;
+
+        .note-list-each {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0.5rem;
+            border-bottom: 1px solid var(--divider-color);
+            font-weight: 500;
+            font-size: .85rem;
+            line-height: 1.5rem;
+            cursor: pointer;
+
+            .note-update {
+                width: 15%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .note-updated-time {
+                    color: rgba(0, 0, 0, .4);
+                    font-size: .85rem;
+                }
+
+                .note-icon {}
+
+            }
+
+            .note-outer {
+                display: flex;
+                flex-direction: column;
+                width: 85%;
+
+                .note-context {
+                    display: flex;
+                    width: 90%;
+
+                    .note-title {}
+
+                    .text-truncated {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                }
+
+                .note-category {
+                    display: flex;
+                    color: rgba(0, 0, 0, .4);
+                    font-size: .85rem;
+
+                    .note-category-icon {
+                        margin-right: 5px;
+                    }
+
+                    .text-truncated {
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        -webkit-line-clamp: 2;
+                        display: -webkit-box;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+            }
+
+            .note-options {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: block;
+                font-size: 0.5rem;
+                color: transparent;
+                padding: .4rem;
+                z-index: 1;
+                cursor: pointer;
+
+                &:hover {
+                    color: rgba(0, 0, 0, .4);
+                }
+            }
+        }
+    }
+
+}
+
+
+/* --- note editor --- */
+
+.node-editor{
+    margin-left: var(--note-list-width);
+}
+

@@ -1,8 +1,14 @@
 import { Button } from '@material-ui/core';
 import React from 'react'
 import { connect } from 'react-redux';
-import { useHistory} from 'react-router-dom';
+import { Switch, useHistory} from 'react-router-dom';
+import AuthenticatedRoute from '../../components/auth/AuthenticatedRoute';
+import Sidebar from '../../components/sidebar/Sidebar';
 import { userSignOut } from '../../store/actions';
+import Notes from './notes/Notes';
+import TodoList from './todo/TodoList';
+
+import './Dashboard.scss';
 
 const Dashboard = (props) => {
 
@@ -16,8 +22,16 @@ const Dashboard = (props) => {
     }
 
     return (
-        <div>
-            <Button onClick={handleLogout}>Sign Out</Button>
+        <div className="content">
+            {/* <Button onClick={handleLogout}>Sign Out</Button> */}
+            <Switch>
+                <AuthenticatedRoute exact path='/dashboard/notes'>
+                    <Notes />
+                </AuthenticatedRoute>
+                <AuthenticatedRoute exact path='/dashboard/todolist'>
+                    <TodoList />
+                </AuthenticatedRoute>
+            </Switch>
         </div>
     )
 }

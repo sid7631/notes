@@ -4,15 +4,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Sample Project to get you started with React and Firebase Auth
 
-### Add below deatils in .env file at project root to integrate with your firebase web app
+### Add below deatils in .env or .env.development.local file at project root to integrate with your firebase web app
 
 REACT_APP_API_KEY  = 'API-KEY'\
 REACT_APP_AUTH_DOMAI = 'AUTH-DOMAIN'\
+REACT_APP_DATABASE_URL = 'DATABASE_URL'\
 REACT_APP_PROJECT_ID = 'PROJECT-ID'\
 REACT_APP_STORAGE_BUCKET = 'STORAGE-BUCKET'\
 REACT_APP_MESSAGING_SENDE = 'MESSAGING-SENDE'\
 REACT_APP_APP_ID = 'APP-ID'\
-REACT_APP_MEASUREMENT_ID = 'MEASURMENT-ID'\
+REACT_APP_MEASUREMENT_ID = 'MEASURMENT-ID'
 
 ### Email Id and Password Auth implemented
 

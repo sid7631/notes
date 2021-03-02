@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './theme.css';
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
@@ -15,7 +16,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <Provider store={configStore({})}>
-    <BrowserRouter basename='/React-Firebase-Auth/'>
+    <BrowserRouter basename='/app/'>
       <React.StrictMode>
           <App/>
       </React.StrictMode>

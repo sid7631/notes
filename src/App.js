@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import AuthenticatedRoute from './components/auth/AuthenticatedRoute'
 import UnauthenticatedRoute from './components/auth/UnauthenticatedRoute'
+import Sidebar from './components/sidebar/Sidebar'
 import UtilWrapper from './components/utils/UtilWrapper'
 
 import Dashboard from './containers/dashboard/Dashboard'
@@ -30,7 +31,8 @@ export class App extends Component {
             <UnauthenticatedRoute path='/' exact >
               <HomePage />
             </UnauthenticatedRoute>
-            <AuthenticatedRoute exact path='/dashboard'>
+            <AuthenticatedRoute path='/dashboard'>
+              <Sidebar/>
               <Dashboard />
             </AuthenticatedRoute>
             <UnauthenticatedRoute exact path='/sign-up'>

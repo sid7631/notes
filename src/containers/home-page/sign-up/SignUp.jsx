@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {  Container } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { userSignUp } from '../../../store/actions';
 
@@ -8,15 +8,33 @@ import { Link, useHistory } from 'react-router-dom';
 
 function SignUp(props) {
 
+    const initialHelperText = {email:"We'll never share your email",password:'Enter password of length 8.',passwordMatch:'Re-enter Password'};
+    
     const [email, setemail] = useState(null)
     const [password, setpassword] = useState(null)
     const [confirmPassword, setconfirmPassword] = useState(null)
+    const [helperText, sethelperText] = useState(initialHelperText)
+    const [isValid, setisValid] = useState({ email: false, password: false, passwordMatch: false })
 
     const history = useHistory()
 
     function handleSubmit(e) {
         e.preventDefault()
-        props.userSignUp(email, password, true,function(){history.push('/')})
+        props.userSignUp(email, password, true, function () { history.push('/') })
+    }
+
+    function handleValidation() {
+
+    }
+
+    function handleEmail(e) {
+        setisValid({...isValid,['email']:e.target.validity.valid});
+    }
+    function handlePassword(e) {
+        setisValid({...isValid,['password']:e.target.validity.valid})
+    }
+    function handleConfirmPassowrd(e) {
+        setisValid({...isValid,['passwordMatch']:e.target.validity.valid})
     }
 
 
@@ -29,50 +47,50 @@ function SignUp(props) {
                 <Paper >
                     <CardContent>
                         <h2 className="text-center mb-4">Sign Up</h2>
-                        <FormGroup>
-                            <FormControl>
-                                <InputLabel htmlFor="my-input">Email address</InputLabel>
-                                <Input 
-                                    id="my-input" 
-                                    aria-describedby="my-helper-text"  
-                                    onChange={e => setemail(e.target.value)}
-                                    required />
-                                <FormHelperText id="my-helper-text">We'll never share your email.</FormHelperText>
-                            </FormControl>
-                            <FormControl>
-                                <InputLabel htmlFor="my-input">Password</InputLabel>
-                                <Input 
-                                    type="password" 
-                                    id="my-input" 
-                                    aria-describedby="my-helper-text" 
-                                    onChange={e => setpassword(e.target.value)}
-                                    required />
-                                <FormHelperText id="my-helper-text">Enter password of length 8.</FormHelperText>
-                            </FormControl>
-                            <FormControl>
-                                <InputLabel htmlFor="my-input">Confirm Password</InputLabel>
-                                <Input 
-                                    type="password" 
-                                    id="my-input" 
-                                    aria-describedby="my-helper-text" 
-                                    onChange={e => setconfirmPassword(e.target.value)}
-                                    required />
-                                <FormHelperText id="my-helper-text">Confirm password</FormHelperText>
-                            </FormControl>
-                            {/* <Form.Group id="email">
-                                <Form.Label>Email</Form.Label>
-                                <Form.Control type="email" ref={emailRef} required></Form.Control>
-                            </Form.Group> */}
-                            {/* <Form.Group id="password">
-                                <Form.Label>Password</Form.Label>
-                                <Form.Control type="password" ref={passwordRef} required></Form.Control>
-                            </Form.Group> */}
-                            {/* <Form.Group id="password-confirm">
-                                <Form.Label>Password Confirmation</Form.Label>
-                                <Form.Control type="password" ref={passwordConfirmRef} required></Form.Control>
-                            </Form.Group> */}
-                            <Button variant="contained" color="primary" className="w-100 mt-2" type="submit" onClick={handleSubmit}>Sign Up</Button>
-                        </FormGroup>
+                        <form onSubmit={handleSubmit}>
+                            <FormGroup>
+                                <FormControl className="my-2">
+                                    <InputLabel htmlFor="my-input">Email address</InputLabel>
+                                    <Input
+                                    
+                                        type="email"
+                                        id="my-input"
+                                        aria-describedby="my-input-text"
+                                        onChange={e => setemail(e.target.value)}
+                                        onBlur={handleEmail}
+                                        error={false}
+                                        required />
+                                    <FormHelperText id="my-input-text">{helperText['email']}</FormHelperText>
+                                </FormControl>
+                                <FormControl>
+                                    <InputLabel htmlFor="my-password">Password</InputLabel>
+                                    <Input
+                                        type="password"
+                                        id="my-password"
+                                        aria-describedby="my-password-text"
+                                        onChange={e => setpassword(e.target.value)}
+                                        onBlur={handlePassword}
+                                        inputProps={{
+                                            minLength:8
+                                        }}
+                                        required />
+                                    <FormHelperText id="my-password-text">{helperText['password']}</FormHelperText>
+                                </FormControl>
+                                <FormControl>
+                                    <InputLabel htmlFor="my-confirm-password">Confirm Password</InputLabel>
+                                    <Input
+                                        type="password"
+                                        id="my-confirm-password"
+                                        aria-describedby="my-confirm-password-text"
+                                        onChange={e => setconfirmPassword(e.target.value)}
+                                        onBlur={handleConfirmPassowrd}
+                                        minLength={8}
+                                        required />
+                                    <FormHelperText id="my-confirm-password-text">{helperText['passwordMatch']}</FormHelperText>
+                                </FormControl>
+                                <Button variant="contained" color="primary" className="w-100 mt-2" type="submit" >Sign Up</Button>
+                            </FormGroup>
+                        </form>
                     </CardContent>
                 </Paper>
                 <div className="w-100 text-center mt-2">
